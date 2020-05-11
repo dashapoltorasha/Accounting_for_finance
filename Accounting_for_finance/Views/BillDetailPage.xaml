@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Accounting_for_finance.Views.BillDetailPage"
+             Title="Информация о счете">
+
+    <ContentPage.ToolbarItems>
+
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Карта" FontSize="Medium" />
+            <Switch IsToggled="{Binding Type}" x:Name="Card"/>
+            <Label Text="Название" FontSize="Medium" />
+            <Entry Text="{Binding Text}" d:Text="Bill name" FontSize="Small" />
+            <Label Text="Описание" FontSize="Medium" />
+            <Editor Text="{Binding Description}" d:Text="Bill description" FontSize="Small" Margin="0" />
+            <Label Text="Баланс" FontSize="Medium" />
+            <Editor Text="{Binding Balance}" d:Text="Bill balance" FontSize="Small"/>
+            <Label Text="Номер карты" FontSize="Medium" IsVisible="False">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                     Binding="{Binding Source={x:Reference Card}, Path=IsToggled}"
+                     Value="true">
+                        <Setter Property="IsVisible"
+                    Value="False" />
+                        <Setter Property="IsVisible"
+                    Value="True" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Editor Text="{Binding Number}" d:Text="Bill number" FontSize="Small" IsVisible="False">
+                <Editor.Triggers>
+                    <DataTrigger TargetType="Editor"
+                     Binding="{Binding Source={x:Reference Card}, Path=IsToggled}"
+                     Value="true">
+                        <Setter Property="IsVisible"
+                    Value="False" />
+                        <Setter Property="IsVisible"
+                    Value="True" />
+                    </DataTrigger>
+                </Editor.Triggers>
+            </Editor>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
